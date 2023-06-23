@@ -1,10 +1,10 @@
 
-#include "gtest/gtest.h"
-#include "gmock/gmock.h"
-#include "server.h"
 #include "client.h"
+#include "crypto.h"
+#include "gmock/gmock.h"
+#include "gtest/gtest.h"
+#include "server.h"
 
-/*
 TEST(HW1Test, TEST1) {
     Server server{};
     auto bryan{server.add_client("bryan")};
@@ -52,7 +52,7 @@ TEST(HW1Test, TEST7) {
     Server server{};
     auto bryan{server.add_client("bryan")};
     auto clint{server.add_client("clint")};
-    Server const* p{&server};
+    Server const *p{&server};
     auto client = p->get_client("no_one");
     EXPECT_TRUE(client == nullptr);
 }
@@ -67,7 +67,7 @@ TEST(HW1Test, TEST8) {
 TEST(HW1Test, TEST9) {
     Server server{};
     auto bryan{server.add_client("bryan")};
-    Client const* p{bryan.get()};
+    Client const *p{bryan.get()};
     std::string signature{p->sign("mydata")};
     EXPECT_TRUE(crypto::verifySignature(p->get_publickey(), "mydata", signature));
     EXPECT_FALSE(crypto::verifySignature(p->get_publickey(), "notmydata", signature));
@@ -115,10 +115,9 @@ TEST(HW1Test, TEST14) {
     EXPECT_TRUE(clint->transfer_money("sarah", 2.5));
     EXPECT_TRUE(sarah->transfer_money("bryan", 0.5));
 
-    std::cout  <<  std::string(20, '*') <<  std::endl;
-    for(const  auto& trx : pending_trxs)
-        std::cout << trx <<  std::endl;
-    std::cout  <<  std::string(20, '*') <<  std::endl;
+    std::cout << std::string(20, '*') << std::endl;
+    for (const auto &trx : pending_trxs) std::cout << trx << std::endl;
+    std::cout << std::string(20, '*') << std::endl;
 }
 
 TEST(HW1Test, TEST15) {
@@ -132,9 +131,8 @@ TEST(HW1Test, TEST15) {
     EXPECT_TRUE(sarah->transfer_money("bryan", 0.5));
 
     std::string mempool{};
-    for(const auto& trx : pending_trxs)
-        mempool += trx;
-        
+    for (const auto &trx : pending_trxs) mempool += trx;
+
     show_wallets(server);
     size_t nonce{server.mine()};
     show_wallets(server);
@@ -142,11 +140,7 @@ TEST(HW1Test, TEST15) {
     std::string hash = crypto::sha256(mempool + std::to_string(nonce));
     EXPECT_TRUE(hash.substr(0, 10).find("000") != std::string::npos);
     // MINER is: sarah || bryan || clint
-    EXPECT_TRUE(bryan->get_wallet()==4.5 || bryan->get_wallet()==10.75 || bryan->get_wallet()==4.5);
-    EXPECT_TRUE(clint->get_wallet()==3.5 ||clint->get_wallet()==3.5 ||clint->get_wallet()==9.75);
-    EXPECT_TRUE(sarah->get_wallet()==13.25 || sarah->get_wallet()==7 || sarah->get_wallet()==7);
+    EXPECT_TRUE(bryan->get_wallet() == 4.5 || bryan->get_wallet() == 10.75 || bryan->get_wallet() == 4.5);
+    EXPECT_TRUE(clint->get_wallet() == 3.5 || clint->get_wallet() == 3.5 || clint->get_wallet() == 9.75);
+    EXPECT_TRUE(sarah->get_wallet() == 13.25 || sarah->get_wallet() == 7 || sarah->get_wallet() == 7);
 }
-*/
-
-
-
