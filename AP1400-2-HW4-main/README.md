@@ -118,7 +118,7 @@ This class should use a member variable called `T* _p` (T is a template argument
 Implement a constructor for your class so the below code would work. Your constructor should be able to store the given dynamic pointer properly inside the class using `_p` variable.
 
 	```cpp
-	UniquePtr<int> ptr{new int{10}};
+	SharedPtr<int> ptr{new int{10}};
 	```
 
 - **make_shared** (outside the class)
