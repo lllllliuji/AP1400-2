@@ -1,4 +1,26 @@
 #ifndef ESPRESSO_BASED_H
 #define ESPRESSO_BASED_H
+#include <iostream>
+#include <memory>
+#include <vector>
+#include "ingredient.h"
+class EspressoBased {
+   public:
+    virtual std::string get_name() = 0;
+    virtual double price() = 0;
 
-#endif // ESPRESSO_BASED_H
+    void brew() { std::cout << name << " brewing" << std::endl; }
+    std::vector<Ingredient *> &get_ingredients();
+
+    virtual ~EspressoBased();
+
+   protected:
+    EspressoBased();
+    EspressoBased(const EspressoBased &esp);
+    void operator=(const EspressoBased &esp);
+
+    std::vector<Ingredient *> ingredients;
+    std::string name;
+};
+
+#endif  // ESPRESSO_BASED_H
