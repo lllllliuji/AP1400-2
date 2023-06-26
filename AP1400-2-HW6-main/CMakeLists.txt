@@ -10,6 +10,9 @@ include_directories(include/)
 add_executable(main
         src/main.cpp
         src/unit_test.cpp
+        src/q2.cpp
+        src/q3.cpp
+        src/q4.cpp
 )
 target_link_libraries(main
         GTest::GTest
